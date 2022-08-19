@@ -1,0 +1,4 @@
+service postgresql start 
+bash /mnt/map/osm/import.sh
+/bin/bash --rcfile /root/.bashrcv
+sleep 100000000000000
