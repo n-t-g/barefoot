@@ -63,7 +63,7 @@ else
     JAVACMD_OPTIONS="$JAVACMD_OPTIONS -Djava.io.tmpdir=/mnt/map/osm/tmp"
 fi
 export JAVACMD_OPTIONS
-osmosis --read-pbf file=${input} --tf accept-ways highway=* --write-pgsql user="${user}" password="${password}" database="${database}"
+/opt/osmosis/package/bin/osmosis --read-pbf file=${input} --tf accept-ways highway=* --write-pgsql user="${user}" password="${password}" database="${database}"
 echo "Done."
 
 echo "Start extraction of routing data (bfmap tools) ..."
