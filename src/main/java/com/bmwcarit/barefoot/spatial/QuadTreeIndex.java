@@ -203,7 +203,7 @@ public class QuadTreeIndex implements SpatialIndex<Tuple<Integer, Double>>, Seri
             }
             w+=1;
         }
-        logger.info("looked up trough while: [{}] points --> [{}] selected", w, neighbors.size());
+        logger.trace("looked up trough while: [{}] points --> [{}] selected", w, neighbors.size());
         return neighbors;
     }
 

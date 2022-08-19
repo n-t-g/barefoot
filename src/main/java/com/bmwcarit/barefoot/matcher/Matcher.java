@@ -185,7 +185,7 @@ public class Matcher extends Filter<MatcherCandidate, MatcherTransition, Matcher
     @Override
     protected Set<Tuple<MatcherCandidate, Double>> candidates(Set<MatcherCandidate> predecessors,
             MatcherSample sample) {
-        logger.trace("trlvl [{}] finding candidates for sample {} {}",logger.isTraceEnabled(),
+        logger.info("trlvl [{}] finding candidates for sample {} {}",logger.isTraceEnabled(),
                 new SimpleDateFormat("yyyy-MM-dd HH:mm:ssZ").format(sample.time()),
                 GeometryEngine.geometryToWkt(sample.point(), WktExportFlags.wktExportPoint));
 
