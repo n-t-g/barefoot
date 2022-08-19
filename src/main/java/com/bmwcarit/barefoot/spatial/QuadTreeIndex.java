@@ -49,7 +49,7 @@ public class QuadTreeIndex implements SpatialIndex<Tuple<Integer, Double>>, Seri
     private final HashMap<Integer, byte[]> geometries;
     private final Envelope2D envelope;
 
-    private final static Logger logger = LoggerFactory.getLogger(MatcherServer.class);
+    private final static Logger logger = LoggerFactory.getLogger(QuadTreeIndex.class);
 
     /**
      * Creates a {@link QuadTreeIndex} with default bounding box of spatially indexed region and
@@ -203,7 +203,7 @@ public class QuadTreeIndex implements SpatialIndex<Tuple<Integer, Double>>, Seri
             }
             w+=1;
         }
-        logger.info("looked up trough while: [{}] points", w);
+        logger.info("looked up trough while: [{}] points --> [{}] selected", w, neighbors.size());
         return neighbors;
     }
 
