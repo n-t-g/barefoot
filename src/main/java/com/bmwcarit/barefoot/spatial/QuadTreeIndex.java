@@ -21,6 +21,10 @@ import java.util.HashSet;
 import java.util.PriorityQueue;
 import java.util.Set;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import com.bmwcarit.barefoot.matcher.MatcherServer;
 import com.bmwcarit.barefoot.util.Triple;
 import com.bmwcarit.barefoot.util.Tuple;
 import com.esri.core.geometry.Envelope2D;
@@ -44,6 +48,8 @@ public class QuadTreeIndex implements SpatialIndex<Tuple<Integer, Double>>, Seri
     private QuadTree index = null;
     private final HashMap<Integer, byte[]> geometries;
     private final Envelope2D envelope;
+
+    private final static Logger logger = LoggerFactory.getLogger(MatcherServer.class);
 
     /**
      * Creates a {@link QuadTreeIndex} with default bounding box of spatially indexed region and
@@ -181,6 +187,7 @@ public class QuadTreeIndex implements SpatialIndex<Tuple<Integer, Double>>, Seri
         QuadTreeIterator it = index.getIterator(env, 0);
         int handle = -1;
 
+        int w=0;
         while ((handle = it.next()) != -1) {
             int id = index.getElement(handle);
             Polyline geometry = (Polyline) OperatorImportFromWkb.local().execute(
@@ -194,8 +201,9 @@ public class QuadTreeIndex implements SpatialIndex<Tuple<Integer, Double>>, Seri
             if (d < radius) {
                 neighbors.add(new Tuple<>(id, f));
             }
+            w+=1;
         }
-
+        logger.info("looked up trough while: [{}] points", w);
         return neighbors;
     }
 
