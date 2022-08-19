@@ -185,11 +185,9 @@ public class Matcher extends Filter<MatcherCandidate, MatcherTransition, Matcher
     @Override
     protected Set<Tuple<MatcherCandidate, Double>> candidates(Set<MatcherCandidate> predecessors,
             MatcherSample sample) {
-        if (logger.isTraceEnabled()) {
-            logger.trace("finding candidates for sample {} {}",
-                    new SimpleDateFormat("yyyy-MM-dd HH:mm:ssZ").format(sample.time()),
-                    GeometryEngine.geometryToWkt(sample.point(), WktExportFlags.wktExportPoint));
-        }
+        logger.trace("trlvl [{}] finding candidates for sample {} {}",logger.isTraceEnabled(),
+                new SimpleDateFormat("yyyy-MM-dd HH:mm:ssZ").format(sample.time()),
+                GeometryEngine.geometryToWkt(sample.point(), WktExportFlags.wktExportPoint));
 
         Set<RoadPoint> points_ = map.spatial().radius(sample.point(), radius);
         Set<RoadPoint> points = new HashSet<>(Minset.minimize(points_));
